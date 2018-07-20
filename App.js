@@ -2,6 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import { MainNavigator } from './src/router';
 import AuthProvider from './src/contexts/AuthProvider';
+import HomeProvider from './src/contexts/HomeProvider';
 import firebase from 'firebase';
 
 export default class App extends React.Component {
@@ -18,9 +19,11 @@ export default class App extends React.Component {
 }
   render() {
     return (
+      <HomeProvider>
       <AuthProvider>
         <MainNavigator />
       </AuthProvider>
+      </HomeProvider>
     );
   }
 }

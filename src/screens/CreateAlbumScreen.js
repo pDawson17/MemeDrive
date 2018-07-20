@@ -1,53 +1,63 @@
 import React, { Component } from 'react';
-import { Input, Header, Background, Section, RainbowButton } from '../components/common';
+import {
+  Input,
+  Header,
+  Background,
+  Section,
+  RainbowButton
+} from '../components/common';
 import Toolbar from '../components/Toolbar';
-import { ImagePicker } from 'expo';
-import { MultiImageSelector, MultiImage } from 'react-native-multi-image-selector';
+import { Permissions } from 'expo';
+import ImageSelector from '../expoMultiImageSelector/ImageSelector';
+import { HomeConsumer } from '../contexts/HomeProvider';
+
 
 class CreateAlbumScreen extends Component {
   state = {
     image: null,
     imageArray: []
   }
-  _pickImage = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      multiple: true,
-      aspect: [4, 3],
-    });
-    console.log(result);
 
-    if(!result.cancelled) {
-      this.setState({ image: result.uri })
+  openCameraRoll(context) {
+    if (context.state.galleryOpen) {
+      return <ImageSelector />;
+    }
+  }
+  async _requestPermissionAsync (context) {
+    const { status } = await Permissions.askAsync(Expo.Permissions.CAMERA_ROLL);
+    if (status === 'granted') {
+      { context.getGalleryPermission };
+    }
+  }
+  switchPage(context) {
+    if (context.state.finishedSelection) {
+      return (
+      this.props.navigation.navigate('DisplayAlbum')
+    );
     }
   }
   render() {
-    return(
+    return (
+      <HomeConsumer>
+      {(context) => (
       <Background>
+      {this.switchPage(context)}
+      {this.openCameraRoll(context)}
         <Toolbar
           buttonOne="arrow-left"
           onPressOne={() => this.props.navigation.navigate('Home')}
         />
         <RainbowButton
           label="Pick Image"
-          onPress={this._pickImage}
+          onPress={context.openGallery}
         />
         <RainbowButton
           label="Pick Image 2"
-          onPress={
-            ()=> {
-                  MultiImage.pickImage({
-                         showCamera:true,
-                         maxNum: 5,
-                         multiple:true
-                     }).then((imageArray)=> {
-                         this.setState({imageArray})
-                     }).catch(e=> {
-                    });
-             }
-          }
         />
-        <Input />
+
       </Background>
+    )}
+    </HomeConsumer>
     );
   }
 }

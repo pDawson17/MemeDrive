@@ -16,7 +16,7 @@ class ProfileScreen extends Component {
 
           />
           <Text style={{color: 'white'}}>
-            PROFILE
+            PROFILE  
           </Text>
         </Section>
       </Background>

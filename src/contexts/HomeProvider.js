@@ -1,12 +1,16 @@
 import React, { createContext, Component } from 'react';
-import { View, Text } from 'react-native';
+
 
 export const HomeContext = createContext();
 export const HomeConsumer = HomeContext.Consumer;
 //includes display& creation
 class HomeProvider extends Component {
  state = {
-    data: [
+   galleryOpen: false,
+   galleryPermission: false,
+   selection: [],
+   finishedSelection: false,
+   data: [
       {
         key: '123',
         name: 'album 1',
@@ -26,13 +30,24 @@ class HomeProvider extends Component {
     }
   render() {
     return (
-    <HomeContext.Provider value={{
-        state: this.state
-      }}>
+    <HomeContext.Provider
+    value={{
+        state: this.state,
+        openGallery: (() => this.setState({ galleryOpen: true })),
+        setFinished: (() => this.setState({ finishedSelection: false })),
+        getGalleryPermission: (() => this.setState({ galleryPermission: true })),
+        setSelection: ((selectedPhotos) => {
+          this.setState({
+            selection: [...this.state.selection, ...selectedPhotos],
+             finishedSelection: true
+            });
+      }),
+      }}
+    >
       {this.props.children}
     </HomeContext.Provider>
   );
-};
+}
 }
 
 export default HomeProvider;

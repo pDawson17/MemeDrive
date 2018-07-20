@@ -4,7 +4,8 @@ import HomeScreen from './screens/HomeScreen';
 import SharingScreen from './screens/SharingScreen';
 import FeaturedScreen from './screens/FeaturedScreen';
 import ProfileScreen from './screens/ProfileScreen';
-import CreateAlbumScreen from './screens/CreateAlbumScreen'
+import CreateAlbumScreen from './screens/CreateAlbumScreen';
+import DisplayAlbumScreen from './screens/DisplayAlbumScreen';
 import { Entypo, FontAwesome } from '@expo/vector-icons';
 import {
   createStackNavigator,
@@ -70,7 +71,8 @@ const AuthNavigator = createStackNavigator(
 const ToolbarNavigator = createStackNavigator(
   {
     Profile: { screen: ProfileScreen },
-    CreateAlbum: { screen: CreateAlbumScreen}
+    CreateAlbum: { screen: CreateAlbumScreen },
+    DisplayAlbum: { screen: DisplayAlbumScreen }
   },
   {
     navigationOptions: {
@@ -86,6 +88,6 @@ export const MainNavigator = createSwitchNavigator(
     Toolbar: ToolbarNavigator
   },
   {
-    initialRouteName: 'Auth'
+    initialRouteName: 'Home'
   }
 );

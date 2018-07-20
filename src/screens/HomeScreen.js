@@ -12,7 +12,7 @@ import {
 
 
 class HomeScreen extends Component {
-  _renderItem = ({item}) => (
+  _renderItem = ({ item }) => (
     <AlbumDisplay
       title={item.name}
       date={item.date}
@@ -23,7 +23,7 @@ class HomeScreen extends Component {
       <HomeConsumer>
       {(context) => (
         <Background>
-          <Section style={{justifyContent: 'flex-start'}}>
+          <Section style={{ justifyContent: 'flex-start' }}>
             <Toolbar
               buttonOne="user"
               buttonTwo="crosshair"
@@ -42,8 +42,8 @@ class HomeScreen extends Component {
       )}
       </HomeConsumer>
     );
-  };
-};
+  }
+}
 
 const styles = {
   listStyle: {

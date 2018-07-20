@@ -1,20 +1,19 @@
 import React, { Component } from 'react';
 import { Background, Section, Header, Input, RainbowButton } from '../components/common';
-import { Text } from 'react-native';
 import { AuthConsumer } from '../contexts/AuthProvider';
-import firebase from 'firebase';
+
 class LoginScreen extends Component {
 //add a loading spinner eventually
   switchPage(context) {
-    if(context.state.loggedIn){
-      return(
+    if (context.state.loggedIn) {
+      return (
         this.props.navigation.navigate('Home')
       );
     }
   }
 
   render() {
-    return(
+    return (
       <AuthConsumer>
       {(context) => (
         <Background>
@@ -48,7 +47,7 @@ class LoginScreen extends Component {
       </AuthConsumer>
 
   );
-  };
-};
+  }
+}
 
 export default LoginScreen;
