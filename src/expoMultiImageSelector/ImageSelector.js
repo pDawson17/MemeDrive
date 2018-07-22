@@ -12,7 +12,6 @@ class ImageSelector extends React.Component {
   }
   imageBrowserCallback = (callback) => {
     callback.then((photos) => {
-      console.log(photos);
       this.setState({
         imageBrowserOpen: false,
         photos

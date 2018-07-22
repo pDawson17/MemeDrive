@@ -77,7 +77,6 @@ export default class ImageBrowser extends React.Component {
       .then(imageData => {
         return imageData.map((data, i) => {
            context.setSelection({ ...data });
-           console.log(data);
            return { file: selectedPhotos[i], ...data };
         });
       });

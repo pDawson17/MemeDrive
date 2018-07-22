@@ -6,6 +6,7 @@ export const HomeConsumer = HomeContext.Consumer;
 //includes display& creation
 class HomeProvider extends Component {
  state = {
+   testValue: 'oapasj',
    galleryOpen: false,
    galleryPermission: false,
    selection: [],
@@ -38,7 +39,7 @@ class HomeProvider extends Component {
         getGalleryPermission: (() => this.setState({ galleryPermission: true })),
         setSelection: ((selectedPhotos) => {
           this.setState({
-            selection: [...this.state.selection, ...selectedPhotos],
+            selection: this.state.selection.concat([selectedPhotos]),
              finishedSelection: true
             });
       }),

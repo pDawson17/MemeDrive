@@ -1,17 +1,24 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList } from 'react-native';
+import { FlatList } from 'react-native';
 import { HomeConsumer } from '../contexts/HomeProvider';
 import {
-  RainbowButton,
   Background,
   Section,
-  AlbumDisplay,
-  IconButton
+  AlbumDisplay
  } from '../components/common';
  import Toolbar from '../components/Toolbar';
 
+export default props => (
+   <HomeConsumer>
+     {contextProp => <HomeScreen contextProp={contextProp} {...props} />}
+   </HomeConsumer>
+ );
 
 class HomeScreen extends Component {
+
+componentDidMount() {
+this.props.contextProp.setFinished();
+}
   _renderItem = ({ item }) => (
     <AlbumDisplay
       title={item.name}
@@ -49,6 +56,4 @@ const styles = {
   listStyle: {
     alignSelf: 'stretch'
   }
-}
-
-export default HomeScreen;
+};

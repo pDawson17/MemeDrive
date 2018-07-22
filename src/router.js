@@ -18,7 +18,7 @@ const HomeNavigator = createBottomTabNavigator(
     Home: { screen: HomeScreen,
       navigationOptions: {
         tabBarIcon: () => {
-          return(
+          return (
           <Entypo name="basecamp" size={32} color='#707070' />
         );
         },
@@ -27,7 +27,7 @@ const HomeNavigator = createBottomTabNavigator(
     Sharing: { screen: SharingScreen,
     navigationOptions: {
       tabBarIcon: () => {
-        return(
+        return (
         <FontAwesome name="superpowers" size={28} color='#707070' />
       );
       },
@@ -36,7 +36,7 @@ const HomeNavigator = createBottomTabNavigator(
     Featured: { screen: FeaturedScreen,
       navigationOptions: {
         tabBarIcon: () => {
-          return(
+          return (
           <Entypo name="rocket" size={32} color='#707070' />
         );
         },

@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
+import { Permissions } from 'expo';
 import {
-  Input,
-  Header,
   Background,
-  Section,
-  RainbowButton
+  RainbowButton,
+  Input
 } from '../components/common';
 import Toolbar from '../components/Toolbar';
-import { Permissions } from 'expo';
 import ImageSelector from '../expoMultiImageSelector/ImageSelector';
 import { HomeConsumer } from '../contexts/HomeProvider';
 
@@ -17,17 +15,13 @@ class CreateAlbumScreen extends Component {
     image: null,
     imageArray: []
   }
-
   openCameraRoll(context) {
     if (context.state.galleryOpen) {
       return <ImageSelector />;
     }
   }
-  async _requestPermissionAsync (context) {
+  async _requestPermissionAsync(context) {
     const { status } = await Permissions.askAsync(Expo.Permissions.CAMERA_ROLL);
-    if (status === 'granted') {
-      { context.getGalleryPermission };
-    }
   }
   switchPage(context) {
     if (context.state.finishedSelection) {
@@ -51,8 +45,10 @@ class CreateAlbumScreen extends Component {
           label="Pick Image"
           onPress={context.openGallery}
         />
-        <RainbowButton
-          label="Pick Image 2"
+        <Input
+          placeholder="Title"
+          onChangeText={context.setAlbumTitle}
+          value={context.state.albumTitle}
         />
 
       </Background>
