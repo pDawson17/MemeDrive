@@ -1,20 +1,36 @@
 import React, { Component } from 'react';
 import { FlatList, Image, View, Dimensions, TouchableHighlight } from 'react-native';
 import { HomeConsumer } from '../contexts/HomeProvider';
-import { Background, Section } from '../components/common';
+import { Background, Section, Input, IconButton } from '../components/common';
 import Toolbar from '../components/Toolbar';
 
-const { width } = Dimensions.get('window')
+const { width } = Dimensions.get('window');
 
 class DisplayAlbumScreen extends Component {
   _renderItem = ({ item }) => (
-    <View style={{ borderWidth: .5, borderColor: '#707070' }}>
-    <Image
-      style={{ width: width, height: width }}
-      source={{ uri: item.uri }}
+    <HomeConsumer>
+    {(context) => (
 
-    />
-    </View>
+      <View style={{ borderWidth: .5, borderColor: '#707070' }}>
+        <Image
+          style={{ width: width, height: width }}
+          source={{ uri: item.uri }}
+
+        />
+        <View style={{ flexDirection: 'row' }}>
+          <Input
+            value={this.state.comment}
+            onChangeText={(value) => this.setState({ comment: value })}
+            placeholder="comment"
+          />
+          <IconButton
+            iconName="plus-circle"
+            onPress={context.setComment}
+          />
+        </View>
+      </View>
+    )}
+    </HomeConsumer>
   )
   render() {
     return (

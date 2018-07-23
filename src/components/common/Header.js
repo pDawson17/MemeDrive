@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, ImageBackground } from 'react-native';
 
 const Header = ({ label }) => {
-  return(
+  return (
     <ImageBackground
     style={styles.viewStyle}
     source={require('./img/gradient.jpg')}

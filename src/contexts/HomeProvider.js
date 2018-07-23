@@ -6,9 +6,11 @@ export const HomeConsumer = HomeContext.Consumer;
 //includes display& creation
 class HomeProvider extends Component {
  state = {
+   comment: '',
    testValue: 'oapasj',
    galleryOpen: false,
    galleryPermission: false,
+   comments: [],
    selection: [],
    finishedSelection: false,
    data: [
@@ -43,6 +45,7 @@ class HomeProvider extends Component {
              finishedSelection: true
             });
       }),
+        
       }}
     >
       {this.props.children}

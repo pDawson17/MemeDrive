@@ -38,7 +38,7 @@ export default class ImageBrowser extends React.Component {
     }
     if (Object.keys(newSelected).length > this.props.max) return;
     if (!newSelected) newSelected = {};
-    this.setState({ selected: newSelected })
+    this.setState({ selected: newSelected });
   }
 
   getPhotos = () => {
@@ -64,7 +64,6 @@ export default class ImageBrowser extends React.Component {
     let length = width/4;
     return { length, offset: length * index, index }
   }
-//**********************************************************TODO
   prepareCallback(context) {
     let { selected, photos, photoSelection } = this.state;
     let selectedPhotos = photos.filter((item, index) => {

@@ -23,7 +23,7 @@ class AuthProvider extends Component {
   onLoginFail() {
     this.setState({
       error: 'Failed to authenticate user'
-    })
+    });
   }
   renderError() {
     if(this.state.error){
@@ -43,15 +43,17 @@ class AuthProvider extends Component {
     error: ''
   }
   render() {
-    return(
-      <AuthContext.Provider value={{
+    return (
+      <AuthContext.Provider
+      value={{
         state: this.state,
-        setEmail: (value) => this.setState({email: value, error: ''}),
-        setPassword: (value) => this.setState({password: value, error: ''}),
+        setEmail: (value) => this.setState({ email: value, error: '' }),
+        setPassword: (value) => this.setState({ password: value, error: '' }),
         loginPress: this.loginPress,
         renderError: this.renderError
 
-      }}>
+      }}
+      >
         {this.props.children}
       </AuthContext.Provider>
     );
